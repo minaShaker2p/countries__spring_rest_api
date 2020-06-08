@@ -33,15 +33,18 @@ public class CountriesController {
 
     @GetMapping("/countries/{id}")
     Optional<Country> getCountryById(@PathVariable("id") int id) {
-        return countryService.getCountryById(id);
+        if (countryService.getCountryById(id).isPresent())
+            return countryService.getCountryById(id);
+        else
+            throw new IllegalArgumentException("User Not Found");
     }
 
     @GetMapping("/countries/search")
     @ResponseBody
     List<Country> search(@RequestParam(name = "name_en", required = false) String nameEn,
-                               @RequestParam(name = "name_de", required = false) String nameDe,
-                               @RequestParam(name = "country_code", required = false) String countryCode,
-                               @RequestParam(name = "license_plate", required = false) String licensePlate) {
+                         @RequestParam(name = "name_de", required = false) String nameDe,
+                         @RequestParam(name = "country_code", required = false) String countryCode,
+                         @RequestParam(name = "license_plate", required = false) String licensePlate) {
         return countryService.search(nameEn, nameDe, countryCode, licensePlate);
     }
 
@@ -52,14 +55,21 @@ public class CountriesController {
 
     @DeleteMapping("/countries/{id}")
     void deleteCountryById(@PathVariable(name = "id") int id) {
-        countryService.deleteCountryById(id);
+        if (countryService.getCountryById(id).isPresent())
+            countryService.deleteCountryById(id);
+        else
+            throw new IllegalArgumentException("User Not Found");
     }
 
 
     @PutMapping("/countries/{id}")
     Optional<Country> updateCountryById(@PathVariable(name = "id") int id,
-                           @RequestBody Country country) {
-      return   countryService.updateCountryById(id,country);
+                                        @RequestBody Country country) {
+        if (countryService.getCountryById(id).isPresent())
+            return countryService.updateCountryById(id, country);
+        else
+            throw new IllegalArgumentException("User Not Found");
+
     }
 
 
