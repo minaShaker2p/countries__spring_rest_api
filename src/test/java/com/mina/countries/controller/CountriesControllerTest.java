@@ -2,8 +2,8 @@ package com.mina.countries.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mina.countries.factory.CountryFactory;
 import com.mina.countries.model.Country;
-import com.mina.countries.model.CountryFactory;
 import com.mina.countries.service.CountryService;
 import org.hamcrest.Matchers;
 import org.junit.Test;

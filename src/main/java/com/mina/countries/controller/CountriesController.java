@@ -1,7 +1,7 @@
 package com.mina.countries.controller;
 
+import com.mina.countries.factory.CountryFactory;
 import com.mina.countries.model.Country;
-import com.mina.countries.model.CountryFactory;
 import com.mina.countries.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class CountriesController {
+class CountriesController {
 
     @Autowired
     CountryService countryService;
@@ -63,10 +63,10 @@ public class CountriesController {
 
 
     @PutMapping("/countries/{id}")
-    Optional<Country> updateCountryById(@PathVariable(name = "id") int id,
-                                        @RequestBody Country country) {
+    Country updateCountryById(@PathVariable(name = "id") int id,
+                              @RequestBody Country country) {
         if (countryService.getCountryById(id).isPresent())
-            return countryService.updateCountryById(id, country);
+            return countryService.updateCountryById(id, country).get();
         else
             throw new IllegalArgumentException("User Not Found");
 
