@@ -23,6 +23,7 @@ public class CountryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
     private int id;
+
     @Column(name = "name_en", nullable = false)
     private String nameEN;
 
@@ -34,4 +35,5 @@ public class CountryEntity {
 
     @Column(name = "license_plate")
     private String licensePlate;
+
 }

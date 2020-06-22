@@ -62,13 +62,9 @@ public class CountryService {
         Optional<CountryEntity> country = countryRepository.findById(id);
 
         if (country.isPresent()) {
-            Country result = new Country(country.get().getId(),
-                    countryEntity.getNameEN(),
-                    countryEntity.getNameDE(),
-                    countryEntity.getCountryCode(),
-                    countryEntity.getLicensePlate());
-            countryRepository.save(countryEntityFactory.newCountryEntity(result));
-            return Optional.ofNullable(result);
+            countryEntity.setId(country.get().getId());
+            countryRepository.save(countryEntityFactory.newCountryEntity(countryEntity));
+            return Optional.of(countryEntity);
         }
         return Optional.empty();
     }
