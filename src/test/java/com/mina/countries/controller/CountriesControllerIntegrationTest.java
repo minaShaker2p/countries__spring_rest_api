@@ -30,8 +30,9 @@ public class CountriesControllerIntegrationTest {
 
     @Test
     public void getAllCountries() throws Exception {
-        ResponseEntity<List> response=testRestTemplate.getForEntity("http://localhost:"+port+"/countries/", List.class);
-        assertThat(response.getStatusCode(),equalTo(HttpStatus.OK));
-
+        ResponseEntity<List> response = testRestTemplate.getForEntity("http://localhost:" + port + "/countries/", List.class);
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
     }
+
+    //TODO Add some integration test here for all methods
 }
