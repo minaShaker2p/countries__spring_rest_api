@@ -18,4 +18,6 @@ public interface CountryRepository extends CrudRepository<CountryEntity, Integer
             "OR u.license_plate LIKE :license_plate ",
             nativeQuery = true)
     List<CountryEntity> search(@Param("name_en") String nameEN, @Param("name_de") String nameDE, @Param("country_code") String countryCode, @Param("license_plate") String licensePlate);
+
+    CountryEntity findByNameEN(String nameEN);
 }

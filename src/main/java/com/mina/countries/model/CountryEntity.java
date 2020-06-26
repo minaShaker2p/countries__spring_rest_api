@@ -36,4 +36,10 @@ public class CountryEntity {
     @Column(name = "license_plate")
     private String licensePlate;
 
+    public CountryEntity(String nameEN, String nameDE, String countryCode, String licensePlate) {
+        this.nameEN = nameEN;
+        this.nameDE = nameDE;
+        this.countryCode = countryCode;
+        this.licensePlate = licensePlate;
+    }
 }
